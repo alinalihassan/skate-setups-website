@@ -1,14 +1,11 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
-import type { Setup } from '../lib/types'
+import useSWR from 'swr'
+import { fetcher } from '../lib/api'
+import type { Setup, SetupsResponse } from '../lib/types'
 import { Stars } from './shared'
-
-interface ArchiveSectionProps {
-  setups: Setup[]
-  filter: string
-  onFilterChange: (type: string) => void
-}
 
 function ArchiveCard({ setup }: { setup: Setup }) {
   const isSkateboard = setup.category === 'skateboard'
@@ -22,11 +19,7 @@ function ArchiveCard({ setup }: { setup: Setup }) {
       <div className="setup-card bg-zinc-900 rounded-xl overflow-hidden cursor-pointer">
         <div className="relative aspect-square bg-zinc-800">
           {firstImage ? (
-            <img
-              src={firstImage}
-              alt={title}
-              className="w-full h-full object-cover"
-            />
+            <img src={firstImage} alt={title} className="w-full h-full object-cover" />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-zinc-600">
               <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -49,13 +42,18 @@ function ArchiveCard({ setup }: { setup: Setup }) {
   )
 }
 
-export default function ArchiveSection({ setups, filter, onFilterChange }: ArchiveSectionProps) {
-  const inactiveSetups = setups.filter((s) => !s.frontmatter.active)
-  const filters = [
-    { id: 'all', label: 'All' },
-    { id: 'skateboard', label: 'Boards' },
-    { id: 'shoe', label: 'Shoes' },
-  ]
+const filters = [
+  { id: 'all', label: 'All' },
+  { id: 'skateboard', label: 'Boards' },
+  { id: 'shoe', label: 'Shoes' },
+] as const
+
+export default function ArchiveSection() {
+  const [filter, setFilter] = useState('all')
+  const url = filter === 'all' ? '/api/setups' : `/api/setups?type=${filter}`
+  const { data } = useSWR<SetupsResponse>(url, fetcher)
+
+  const setups = data?.setups?.filter((s) => !s.frontmatter.active) ?? []
 
   return (
     <section className="archive-section" id="archive">
@@ -71,7 +69,7 @@ export default function ArchiveSection({ setups, filter, onFilterChange }: Archi
                 <button
                   key={id}
                   type="button"
-                  onClick={() => onFilterChange(id)}
+                  onClick={() => setFilter(id)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                     filter === id
                       ? 'bg-zinc-100 text-zinc-900'
@@ -85,12 +83,12 @@ export default function ArchiveSection({ setups, filter, onFilterChange }: Archi
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {inactiveSetups.map((setup) => (
+            {setups.map((setup) => (
               <ArchiveCard key={setup.id} setup={setup} />
             ))}
           </div>
 
-          {inactiveSetups.length === 0 && (
+          {setups.length === 0 && (
             <div className="text-center py-20">
               <p className="text-zinc-600 text-lg">No setups found</p>
             </div>
