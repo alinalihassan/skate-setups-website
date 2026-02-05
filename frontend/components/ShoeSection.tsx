@@ -26,8 +26,15 @@ export default function ShoeSection({ shoe, index, total, isActive }: ShoeSectio
               <p className="text-zinc-500 text-sm uppercase tracking-widest mb-3 font-medium">
                 Current Shoes
               </p>
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
-                {component?.title || 'Unknown Shoes'}
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl mb-4">
+                {component?.brand ? (
+                  <>
+                    <span className="brand-name">{component.brand}</span>{' '}
+                    <span className="model-name">{component.model || component.title}</span>
+                  </>
+                ) : (
+                  <span className="font-bold">{component?.title || 'Unknown Shoes'}</span>
+                )}
               </h2>
               {shoe.frontmatter.rating != null && shoe.frontmatter.rating > 0 && (
                 <div className="mb-6">

@@ -7,6 +7,8 @@ export interface SetupMetadata {
 export interface Component {
   name: string
   title: string
+  brand?: string
+  model?: string
   image?: string
   specs: Record<string, any>
 }
@@ -100,6 +102,8 @@ export function extractComponents(frontmatter: Record<string, any>, category: 's
     
     return [{
       name: 'shoe',
+      brand: frontmatter.brand || undefined,
+      model: frontmatter.model || undefined,
       title: `${frontmatter.brand || ''} ${frontmatter.model || ''}`.trim() || 'Unknown Shoe',
       specs: shoeSpecs
     }]
@@ -108,26 +112,34 @@ export function extractComponents(frontmatter: Record<string, any>, category: 's
   // For skateboards, extract each component
   const components: Component[] = []
   
+  // Fields to exclude from specs (they get their own dedicated properties)
+  const excludedSpecSuffixes = ['image', 'brand', 'model']
+  
   for (const def of COMPONENT_DEFINITIONS) {
     const mainValue = frontmatter[def.mainField]
     if (!mainValue) continue
     
     const imageField = `${def.name}_image`
     const image = frontmatter[imageField]
+    const brand = frontmatter[`${def.name}_brand`]
+    const model = frontmatter[`${def.name}_model`]
     
-    // Collect all specs that start with this component name
+    // Collect all specs that start with this component name (excluding image, brand, model)
     const specs: Record<string, any> = {}
     Object.entries(frontmatter).forEach(([key, value]) => {
-      if (key.startsWith(`${def.name}_`) && key !== imageField) {
-        // Remove the component name prefix for cleaner display
+      if (key.startsWith(`${def.name}_`)) {
         const specName = key.slice(def.name.length + 1)
-        specs[specName] = value
+        if (!excludedSpecSuffixes.includes(specName)) {
+          specs[specName] = value
+        }
       }
     })
     
     components.push({
       name: def.name,
       title: String(mainValue),
+      brand: brand ? String(brand) : undefined,
+      model: model ? String(model) : undefined,
       image: image ? `/images/${image}` : undefined,
       specs
     })

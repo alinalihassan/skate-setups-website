@@ -241,8 +241,35 @@ function ComponentSection({ component, index, total, isActive }) {
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                        className: "text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-tight",
-                                        children: component.title
+                                        className: "text-4xl sm:text-5xl lg:text-6xl mb-8 leading-tight",
+                                        children: component.brand ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "brand-name",
+                                                    children: component.brand
+                                                }, void 0, false, {
+                                                    fileName: "[project]/frontend/components/ComponentSection.tsx",
+                                                    lineNumber: 59,
+                                                    columnNumber: 23
+                                                }, this),
+                                                ' ',
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "model-name",
+                                                    children: component.model || component.title
+                                                }, void 0, false, {
+                                                    fileName: "[project]/frontend/components/ComponentSection.tsx",
+                                                    lineNumber: 60,
+                                                    columnNumber: 23
+                                                }, this)
+                                            ]
+                                        }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "font-bold",
+                                            children: component.title
+                                        }, void 0, false, {
+                                            fileName: "[project]/frontend/components/ComponentSection.tsx",
+                                            lineNumber: 63,
+                                            columnNumber: 21
+                                        }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/ComponentSection.tsx",
                                         lineNumber: 56,
@@ -258,7 +285,7 @@ function ComponentSection({ component, index, total, isActive }) {
                                                         children: key.replace(/_/g, ' ')
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/components/ComponentSection.tsx",
-                                                        lineNumber: 65,
+                                                        lineNumber: 72,
                                                         columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -267,23 +294,23 @@ function ComponentSection({ component, index, total, isActive }) {
                                                             value: String(value)
                                                         }, void 0, false, {
                                                             fileName: "[project]/frontend/components/ComponentSection.tsx",
-                                                            lineNumber: 69,
+                                                            lineNumber: 76,
                                                             columnNumber: 27
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/components/ComponentSection.tsx",
-                                                        lineNumber: 68,
+                                                        lineNumber: 75,
                                                         columnNumber: 25
                                                     }, this)
                                                 ]
                                             }, key, true, {
                                                 fileName: "[project]/frontend/components/ComponentSection.tsx",
-                                                lineNumber: 64,
+                                                lineNumber: 71,
                                                 columnNumber: 23
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/ComponentSection.tsx",
-                                        lineNumber: 62,
+                                        lineNumber: 69,
                                         columnNumber: 19
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "spec-item border-l-2 border-zinc-700 pl-4 py-2 mb-8",
@@ -292,12 +319,12 @@ function ComponentSection({ component, index, total, isActive }) {
                                             children: "No additional specifications"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/ComponentSection.tsx",
-                                            lineNumber: 76,
+                                            lineNumber: 83,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/ComponentSection.tsx",
-                                        lineNumber: 75,
+                                        lineNumber: 82,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -308,14 +335,14 @@ function ComponentSection({ component, index, total, isActive }) {
                                                 children: String(index + 1).padStart(2, '0')
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/components/ComponentSection.tsx",
-                                                lineNumber: 82,
+                                                lineNumber: 89,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "w-16 h-px bg-zinc-700"
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/components/ComponentSection.tsx",
-                                                lineNumber: 85,
+                                                lineNumber: 92,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -323,13 +350,13 @@ function ComponentSection({ component, index, total, isActive }) {
                                                 children: String(total).padStart(2, '0')
                                             }, void 0, false, {
                                                 fileName: "[project]/frontend/components/ComponentSection.tsx",
-                                                lineNumber: 86,
+                                                lineNumber: 93,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/frontend/components/ComponentSection.tsx",
-                                        lineNumber: 81,
+                                        lineNumber: 88,
                                         columnNumber: 17
                                     }, this)
                                 ]
@@ -409,8 +436,35 @@ function ShoeSection({ shoe, index, total, isActive }) {
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                    className: "text-4xl sm:text-5xl lg:text-6xl font-bold mb-4",
-                                    children: component?.title || 'Unknown Shoes'
+                                    className: "text-4xl sm:text-5xl lg:text-6xl mb-4",
+                                    children: component?.brand ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "brand-name",
+                                                children: component.brand
+                                            }, void 0, false, {
+                                                fileName: "[project]/frontend/components/ShoeSection.tsx",
+                                                lineNumber: 32,
+                                                columnNumber: 21
+                                            }, this),
+                                            ' ',
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "model-name",
+                                                children: component.model || component.title
+                                            }, void 0, false, {
+                                                fileName: "[project]/frontend/components/ShoeSection.tsx",
+                                                lineNumber: 33,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "font-bold",
+                                        children: component?.title || 'Unknown Shoes'
+                                    }, void 0, false, {
+                                        fileName: "[project]/frontend/components/ShoeSection.tsx",
+                                        lineNumber: 36,
+                                        columnNumber: 19
+                                    }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/ShoeSection.tsx",
                                     lineNumber: 29,
@@ -422,12 +476,12 @@ function ShoeSection({ shoe, index, total, isActive }) {
                                         rating: shoe.frontmatter.rating
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                        lineNumber: 34,
+                                        lineNumber: 41,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                    lineNumber: 33,
+                                    lineNumber: 40,
                                     columnNumber: 17
                                 }, this)
                             ]
@@ -450,7 +504,7 @@ function ShoeSection({ shoe, index, total, isActive }) {
                                                         className: `absolute inset-0 bg-zinc-800 rounded-xl transform ${idx % 2 === 0 ? 'rotate-1' : '-rotate-1'} opacity-20`
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                                        lineNumber: 49,
+                                                        lineNumber: 56,
                                                         columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
@@ -459,18 +513,18 @@ function ShoeSection({ shoe, index, total, isActive }) {
                                                         className: "relative w-full h-full object-contain rounded-xl bg-zinc-900 shadow-xl"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                                        lineNumber: 54,
+                                                        lineNumber: 61,
                                                         columnNumber: 25
                                                     }, this)
                                                 ]
                                             }, idx, true, {
                                                 fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                                lineNumber: 45,
+                                                lineNumber: 52,
                                                 columnNumber: 23
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                        lineNumber: 43,
+                                        lineNumber: 50,
                                         columnNumber: 19
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "aspect-square bg-zinc-900 rounded-2xl flex items-center justify-center border-2 border-dashed border-zinc-800",
@@ -479,17 +533,17 @@ function ShoeSection({ shoe, index, total, isActive }) {
                                             children: "No images available"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                            lineNumber: 64,
+                                            lineNumber: 71,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                        lineNumber: 63,
+                                        lineNumber: 70,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                    lineNumber: 41,
+                                    lineNumber: 48,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -503,7 +557,7 @@ function ShoeSection({ shoe, index, total, isActive }) {
                                                     children: "Specifications"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                                    lineNumber: 74,
+                                                    lineNumber: 81,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -516,7 +570,7 @@ function ShoeSection({ shoe, index, total, isActive }) {
                                                                     children: key.replace(/_/g, ' ')
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                                                    lineNumber: 80,
+                                                                    lineNumber: 87,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -525,29 +579,29 @@ function ShoeSection({ shoe, index, total, isActive }) {
                                                                         value: String(value)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                                                        lineNumber: 84,
+                                                                        lineNumber: 91,
                                                                         columnNumber: 29
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                                                    lineNumber: 83,
+                                                                    lineNumber: 90,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             ]
                                                         }, key, true, {
                                                             fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                                            lineNumber: 79,
+                                                            lineNumber: 86,
                                                             columnNumber: 25
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                                    lineNumber: 77,
+                                                    lineNumber: 84,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                            lineNumber: 73,
+                                            lineNumber: 80,
                                             columnNumber: 19
                                         }, this),
                                         shoe.content && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -558,7 +612,7 @@ function ShoeSection({ shoe, index, total, isActive }) {
                                                     children: "Review"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                                    lineNumber: 95,
+                                                    lineNumber: 102,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -568,13 +622,13 @@ function ShoeSection({ shoe, index, total, isActive }) {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                                    lineNumber: 98,
+                                                    lineNumber: 105,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                            lineNumber: 94,
+                                            lineNumber: 101,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -585,14 +639,14 @@ function ShoeSection({ shoe, index, total, isActive }) {
                                                     children: String(index + 1).padStart(2, '0')
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                                    lineNumber: 107,
+                                                    lineNumber: 114,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "w-16 h-px bg-zinc-700"
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                                    lineNumber: 110,
+                                                    lineNumber: 117,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -600,25 +654,25 @@ function ShoeSection({ shoe, index, total, isActive }) {
                                                     children: String(total).padStart(2, '0')
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                                    lineNumber: 111,
+                                                    lineNumber: 118,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                            lineNumber: 106,
+                                            lineNumber: 113,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/components/ShoeSection.tsx",
-                                    lineNumber: 70,
+                                    lineNumber: 77,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/components/ShoeSection.tsx",
-                            lineNumber: 39,
+                            lineNumber: 46,
                             columnNumber: 13
                         }, this)
                     ]
@@ -768,6 +822,7 @@ function ArchiveCard({ setup }) {
 }
 _c = ArchiveCard;
 function ArchiveSection({ setups, filter, onFilterChange }) {
+    const inactiveSetups = setups.filter((s)=>!s.frontmatter.active);
     const filters = [
         {
             id: 'all',
@@ -800,7 +855,7 @@ function ArchiveSection({ setups, filter, onFilterChange }) {
                                         children: "Archive"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/ArchiveSection.tsx",
-                                        lineNumber: 65,
+                                        lineNumber: 66,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -808,13 +863,13 @@ function ArchiveSection({ setups, filter, onFilterChange }) {
                                         children: "Browse previous setups and gear"
                                     }, void 0, false, {
                                         fileName: "[project]/frontend/components/ArchiveSection.tsx",
-                                        lineNumber: 66,
+                                        lineNumber: 67,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/frontend/components/ArchiveSection.tsx",
-                                lineNumber: 64,
+                                lineNumber: 65,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -826,63 +881,63 @@ function ArchiveSection({ setups, filter, onFilterChange }) {
                                         children: label
                                     }, id, false, {
                                         fileName: "[project]/frontend/components/ArchiveSection.tsx",
-                                        lineNumber: 70,
+                                        lineNumber: 71,
                                         columnNumber: 17
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/frontend/components/ArchiveSection.tsx",
-                                lineNumber: 68,
+                                lineNumber: 69,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/frontend/components/ArchiveSection.tsx",
-                        lineNumber: 63,
+                        lineNumber: 64,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6",
-                        children: setups.map((setup)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ArchiveCard, {
+                        children: inactiveSetups.map((setup)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ArchiveCard, {
                                 setup: setup
                             }, setup.id, false, {
                                 fileName: "[project]/frontend/components/ArchiveSection.tsx",
-                                lineNumber: 88,
+                                lineNumber: 89,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/frontend/components/ArchiveSection.tsx",
-                        lineNumber: 86,
+                        lineNumber: 87,
                         columnNumber: 11
                     }, this),
-                    setups.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    inactiveSetups.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "text-center py-20",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                             className: "text-zinc-600 text-lg",
                             children: "No setups found"
                         }, void 0, false, {
                             fileName: "[project]/frontend/components/ArchiveSection.tsx",
-                            lineNumber: 94,
+                            lineNumber: 95,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/frontend/components/ArchiveSection.tsx",
-                        lineNumber: 93,
+                        lineNumber: 94,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/components/ArchiveSection.tsx",
-                lineNumber: 62,
+                lineNumber: 63,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/frontend/components/ArchiveSection.tsx",
-            lineNumber: 61,
+            lineNumber: 62,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/frontend/components/ArchiveSection.tsx",
-        lineNumber: 60,
+        lineNumber: 61,
         columnNumber: 5
     }, this);
 }
@@ -1008,11 +1063,20 @@ function HomePage() {
     }["HomePage.useEffect"], [
         loading
     ]);
-    // Activate first section on load
+    // Activate first section on load, or scroll to #archive if hash is present
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "HomePage.useEffect": ()=>{
             if (!loading && totalSections > 0) {
                 setActiveSectionIndex(0);
+                if (window.location.hash === '#archive') {
+                    // Small delay to let the DOM render, then scroll to archive
+                    const archive = document.getElementById('archive');
+                    if (archive) {
+                        archive.scrollIntoView({
+                            behavior: 'instant'
+                        });
+                    }
+                }
             }
         }
     }["HomePage.useEffect"], [
@@ -1056,7 +1120,7 @@ function HomePage() {
                         className: "loading-spinner mx-auto mb-4"
                     }, void 0, false, {
                         fileName: "[project]/frontend/app/page.tsx",
-                        lineNumber: 111,
+                        lineNumber: 119,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1064,18 +1128,18 @@ function HomePage() {
                         children: "Loading setups..."
                     }, void 0, false, {
                         fileName: "[project]/frontend/app/page.tsx",
-                        lineNumber: 112,
+                        lineNumber: 120,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/app/page.tsx",
-                lineNumber: 110,
+                lineNumber: 118,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/frontend/app/page.tsx",
-            lineNumber: 109,
+            lineNumber: 117,
             columnNumber: 7
         }, this);
     }
@@ -1088,7 +1152,7 @@ function HomePage() {
                 }
             }, void 0, false, {
                 fileName: "[project]/frontend/app/page.tsx",
-                lineNumber: 121,
+                lineNumber: 129,
                 columnNumber: 7
             }, this),
             totalSections > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1100,12 +1164,12 @@ function HomePage() {
                         onClick: ()=>scrollToSection(i)
                     }, i, false, {
                         fileName: "[project]/frontend/app/page.tsx",
-                        lineNumber: 127,
+                        lineNumber: 135,
                         columnNumber: 13
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/frontend/app/page.tsx",
-                lineNumber: 125,
+                lineNumber: 133,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1119,7 +1183,7 @@ function HomePage() {
                             isActive: activeSectionIndex === i
                         }, component.name, false, {
                             fileName: "[project]/frontend/app/page.tsx",
-                            lineNumber: 140,
+                            lineNumber: 148,
                             columnNumber: 11
                         }, this)),
                     shoe && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$components$2f$ShoeSection$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1129,7 +1193,7 @@ function HomePage() {
                         isActive: activeSectionIndex === components.length
                     }, void 0, false, {
                         fileName: "[project]/frontend/app/page.tsx",
-                        lineNumber: 151,
+                        lineNumber: 159,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$components$2f$ArchiveSection$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1138,13 +1202,13 @@ function HomePage() {
                         onFilterChange: handleFilter
                     }, void 0, false, {
                         fileName: "[project]/frontend/app/page.tsx",
-                        lineNumber: 160,
+                        lineNumber: 168,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/frontend/app/page.tsx",
-                lineNumber: 137,
+                lineNumber: 145,
                 columnNumber: 7
             }, this)
         ]

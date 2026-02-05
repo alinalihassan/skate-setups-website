@@ -74,10 +74,18 @@ export default function HomePage() {
     return () => container.removeEventListener('scroll', onScroll)
   }, [loading])
 
-  // Activate first section on load
+  // Activate first section on load, or scroll to #archive if hash is present
   useEffect(() => {
     if (!loading && totalSections > 0) {
       setActiveSectionIndex(0)
+
+      if (window.location.hash === '#archive') {
+        // Small delay to let the DOM render, then scroll to archive
+          const archive = document.getElementById('archive')
+          if (archive) {
+            archive.scrollIntoView({ behavior: 'instant' })
+          }
+      }
     }
   }, [loading, totalSections])
 

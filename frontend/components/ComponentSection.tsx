@@ -52,9 +52,16 @@ export default function ComponentSection({ component, index, total, isActive }: 
                   {component.name}
                 </p>
 
-                {/* Component title */}
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
-                  {component.title}
+                {/* Component title — brand + model */}
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl mb-8 leading-tight">
+                  {component.brand ? (
+                    <>
+                      <span className="brand-name">{component.brand}</span>{' '}
+                      <span className="model-name">{component.model || component.title}</span>
+                    </>
+                  ) : (
+                    <span className="font-bold">{component.title}</span>
+                  )}
                 </h2>
 
                 {/* Specs grid */}

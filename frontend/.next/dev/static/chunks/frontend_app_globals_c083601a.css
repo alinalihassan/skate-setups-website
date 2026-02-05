@@ -1605,6 +1605,14 @@ body {
   text-decoration: underline;
 }
 
+.brand-name {
+  font-weight: 700;
+}
+
+.model-name {
+  font-weight: 300;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);

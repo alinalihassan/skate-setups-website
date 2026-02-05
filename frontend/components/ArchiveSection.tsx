@@ -50,6 +50,7 @@ function ArchiveCard({ setup }: { setup: Setup }) {
 }
 
 export default function ArchiveSection({ setups, filter, onFilterChange }: ArchiveSectionProps) {
+  const inactiveSetups = setups.filter((s) => !s.frontmatter.active)
   const filters = [
     { id: 'all', label: 'All' },
     { id: 'skateboard', label: 'Boards' },
@@ -84,12 +85,12 @@ export default function ArchiveSection({ setups, filter, onFilterChange }: Archi
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {setups.map((setup) => (
+            {inactiveSetups.map((setup) => (
               <ArchiveCard key={setup.id} setup={setup} />
             ))}
           </div>
 
-          {setups.length === 0 && (
+          {inactiveSetups.length === 0 && (
             <div className="text-center py-20">
               <p className="text-zinc-600 text-lg">No setups found</p>
             </div>

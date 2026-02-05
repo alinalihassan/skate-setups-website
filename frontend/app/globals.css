@@ -177,6 +177,17 @@ body {
 }
 
 /* ================================
+   Brand Typography
+   ================================ */
+.brand-name {
+  font-weight: 700;
+}
+
+.model-name {
+  font-weight: 300;
+}
+
+/* ================================
    Loading Spinner
    ================================ */
 @keyframes spin {

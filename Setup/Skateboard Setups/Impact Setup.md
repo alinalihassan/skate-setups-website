@@ -34,9 +34,9 @@ bearings_brand: Bones
 bearings_model: Super Reds
 bearings_link: https://www.skatedeluxe.com/nl/p/_p14470
 bearings_image: Bones Super Reds Bearings.png
-hardware: Girl Phillips
+hardware: Girl Phillips 1"
 hardware_brand: Girl
-hardware_model: Phillips
+hardware_model: Phillips 1"
 hardware_size: 1"
 hardware_type: Phillips
 hardware_link: https://www.skatestore.com/nl/Girl-Phillips-Hardware-1-inch/1122159-1-inch

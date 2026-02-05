@@ -34,8 +34,9 @@ bearings_brand: Bones
 bearings_model: Super Reds
 bearings_link: https://www.skatedeluxe.com/nl/p/_p14470
 bearings_image: Bones Super Reds Bearings.png
-hardware: Independent
+hardware: Independent Phillips 7/8"
 hardware_brand: Independent
+hardware_model: Phillips 7/8"
 hardware_size: 7/8"
 hardware_type: Phillips
 hardware_link: https://www.sickboards.nl/nl/boutjes-en-moertjes/24888-independent-hardware-78-blackred-phillips-bolts.html

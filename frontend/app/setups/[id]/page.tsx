@@ -40,8 +40,8 @@ export default function SetupDetailPage() {
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Setup Not Found</h1>
           <p className="text-zinc-500 mb-8">This setup does not exist or has been removed.</p>
-          <Link href="/" className="text-zinc-400 hover:text-white transition-colors">
-            &larr; Back to home
+          <Link href="/#archive" className="text-zinc-400 hover:text-white transition-colors">
+            &larr; Back to archive
           </Link>
         </div>
       </div>
@@ -58,7 +58,7 @@ export default function SetupDetailPage() {
       <div className="max-w-7xl mx-auto">
         {/* Back Link */}
         <Link
-          href="/"
+          href="/#archive"
           className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-8"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

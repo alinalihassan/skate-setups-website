@@ -1,6 +1,8 @@
 export interface Component {
   name: string
   title: string
+  brand?: string
+  model?: string
   image?: string
   specs: Record<string, any>
 }
