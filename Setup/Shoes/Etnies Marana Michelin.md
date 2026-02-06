@@ -12,13 +12,10 @@ impact_protection: high
 comfort: medium
 date: 2025-08-01
 rating: 8
+link: https://eu.etnies.com/products/marana-michelin-black-dirty-wash-4101000403-013
+images: [Etnies Marana Michelin - 1.png, Etnies Marana Michelin - 2.jpeg, Etnies Marana Michelin - 3.jpeg, Etnies Marana Michelin - 4.jpeg]
 active: true
 ---
-
-![[Etnies Marana Michelin - 1.png]]
-![[Etnies Marana Michelin - 2.jpeg]]
-![[Etnies Marana Michelin - 3.jpeg]]
-![[Etnies Marana Michelin - 4.jpeg]]
 
 ### Pros
 - Incredible resilience, lasts the longest by far

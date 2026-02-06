@@ -43,8 +43,12 @@ export function parseYamlFrontmatter(content: string): { frontmatter: Record<str
       const key = line.slice(0, colonIndex).trim()
       let value: any = line.slice(colonIndex + 1).trim()
       
+      // Try to parse as inline array [item1, item2, ...]
+      if (value.startsWith('[') && value.endsWith(']')) {
+        value = value.slice(1, -1).split(',').map((item: string) => item.trim()).filter(Boolean)
+      }
       // Try to parse as boolean
-      if (value === 'true') value = true
+      else if (value === 'true') value = true
       else if (value === 'false') value = false
       // Try to parse as number
       else if (!isNaN(Number(value)) && value !== '') value = Number(value)
@@ -60,23 +64,10 @@ export function parseYamlFrontmatter(content: string): { frontmatter: Record<str
   return { frontmatter, body }
 }
 
-export function extractImages(content: string): string[] {
-  const images: string[] = []
-  const imageRegex = /!\[\[([^\]]+)\]\]/g
-  
-  let match = imageRegex.exec(content)
-  while (match !== null) {
-    if (match[1]) {
-      images.push(match[1])
-    }
-    match = imageRegex.exec(content)
-  }
-  
-  return images
-}
-
-export function removeImageReferences(content: string): string {
-  return content.replace(/!\[\[([^\]]+)\]\]\n?/g, '')
+export function extractImages(frontmatter: Record<string, any>): string[] {
+  const images = frontmatter.images
+  if (!Array.isArray(images)) return []
+  return images.map((img: any) => String(img))
 }
 
 // Component definitions for skateboard setups
@@ -95,7 +86,7 @@ export function extractComponents(frontmatter: Record<string, any>, category: 's
     // For shoes, return a single component with all specs
     const shoeSpecs: Record<string, any> = {}
     Object.entries(frontmatter).forEach(([key, value]) => {
-      if (!['id', 'type', 'brand', 'model', 'active', 'date', 'rating'].includes(key)) {
+      if (!['id', 'type', 'brand', 'model', 'active', 'date', 'rating', 'images'].includes(key)) {
         shoeSpecs[key] = value
       }
     })
@@ -150,8 +141,7 @@ export function extractComponents(frontmatter: Record<string, any>, category: 's
 
 export function parseMarkdownFile(fileContent: string, filePath: string): ParsedSetup {
   const { frontmatter, body } = parseYamlFrontmatter(fileContent)
-  const images = extractImages(body)
-  const contentWithoutImages = removeImageReferences(body)
+  const images = extractImages(frontmatter)
   
   const category = filePath.includes('Skateboard') ? 'skateboard' : 'shoe'
   const components = extractComponents(frontmatter, category)
@@ -161,7 +151,7 @@ export function parseMarkdownFile(fileContent: string, filePath: string): Parsed
     type: (frontmatter.type as 'setup' | 'shoe') || 'setup',
     frontmatter: frontmatter as SetupMetadata,
     images,
-    content: contentWithoutImages,
+    content: body.trim(),
     filePath,
     category,
     components,

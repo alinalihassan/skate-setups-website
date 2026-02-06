@@ -12,12 +12,10 @@ impact_protection: medium
 comfort: high
 date: 2026-01-09
 rating:
+link: https://eu.etnies.com/products/barge-ls-black-dirty-wash-4101000351-013
+images: [Etnies Barge LS - 1.jpeg, Etnies Barge LS - 2.jpeg, Etnies Barge LS - 3.jpeg]
 active: true
 ---
-
-![[Etnies Barge LS - 1.jpeg]]
-![[Etnies Barge LS - 2.jpeg]]
-![[Etnies Barge LS - 3.jpeg]]
 
 ### Pros
 - Really cool stealthy style

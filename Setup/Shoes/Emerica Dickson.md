@@ -12,12 +12,10 @@ impact_protection: medium
 comfort: high
 date: 2025-05-01
 rating: 9.5
+link: https://emerica.com/products/dickson-black-black
+images: [Emerica Dickson - 1.png, Emerica Dickson - 2.png, Emerica Dickson - 3.png]
 active: false
 ---
-
-![[Emerica Dickson - 1.png]]
-![[Emerica Dickson - 2.png]]
-![[Emerica Dickson - 3.png]]
 
 ### Pros
 - All time favorites, been wearing them since 2010s
