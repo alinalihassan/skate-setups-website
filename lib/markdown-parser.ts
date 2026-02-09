@@ -131,7 +131,7 @@ export function extractComponents(frontmatter: Record<string, any>, category: 's
       title: String(mainValue),
       brand: brand ? String(brand) : undefined,
       model: model ? String(model) : undefined,
-      image: image ? `/images/${image}` : undefined,
+      image: image ? `/api/images/${image}` : undefined,
       specs
     })
   }

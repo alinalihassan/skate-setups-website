@@ -1,38 +1,44 @@
 'use client'
 
-import { useParams } from 'next/navigation'
-import Link from 'next/link'
 import { useRef, useEffect, useState } from 'react'
-import useSWR from 'swr'
-import { fetcher } from '../../../lib/api'
-import type { Setup } from '../../../lib/types'
-import { Stars, SpecValue } from '../../../components/shared'
+import Link from 'next/link'
+import type { Setup } from '../lib/types'
+import { Stars, SpecValue } from './shared'
 
-export default function SetupDetailPage() {
-  const { id } = useParams<{ id: string }>()
-  const { data: setup, isLoading } = useSWR<Setup>(id ? `/api/setups/${id}` : null, fetcher)
+interface SkateboardSetupProps {
+  setup: Setup
+  showBackButton?: boolean
+  startIndex?: number
+  totalSections?: number
+  isActive?: (index: number) => boolean
+}
+
+export default function SkateboardSetup({
+  setup,
+  showBackButton = false,
+  startIndex = 0,
+  totalSections,
+  isActive,
+}: SkateboardSetupProps) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [activeSectionIndex, setActiveSectionIndex] = useState(0)
+  const components = setup.components || []
+  const hasReviewOrRating = setup.content || (setup.frontmatter.rating != null && setup.frontmatter.rating > 0)
+  const localTotalSections = totalSections ?? components.length + (hasReviewOrRating ? 1 : 0)
 
-  // Compute values safely for useEffect dependencies
-  const isSkateboard = setup?.category === 'skateboard'
-  const components = setup?.components || []
-  const hasReviewOrRating = setup?.content || (setup?.frontmatter.rating != null && setup?.frontmatter.rating > 0)
-  const totalSections = isSkateboard ? components.length + (hasReviewOrRating ? 1 : 0) : 0
-
-  // Scroll observer for skateboard setups - must be called unconditionally
+  // Scroll observer - only if managing own scroll container (totalSections undefined)
   useEffect(() => {
-    if (!isSkateboard || !scrollRef.current || totalSections === 0) return
+    if (totalSections !== undefined || !scrollRef.current || localTotalSections === 0) return
 
     const container = scrollRef.current
     const sections = container.querySelectorAll('.component-section')
-    
+
     const sectionObserver = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             const idx = parseInt(entry.target.getAttribute('data-index') || '0', 10)
-            setActiveSectionIndex(idx)
+            setActiveSectionIndex(idx - startIndex)
           }
         }
       },
@@ -44,147 +50,25 @@ export default function SetupDetailPage() {
     return () => {
       sectionObserver.disconnect()
     }
-  }, [isSkateboard, totalSections])
+  }, [totalSections, localTotalSections, startIndex])
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="loading-spinner mx-auto mb-4" />
-          <p className="text-zinc-500">Loading setup...</p>
-        </div>
-      </div>
-    )
+  const getIsActive = (index: number) => {
+    if (isActive) return isActive(index)
+    return activeSectionIndex === index
   }
 
-  if (!setup) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">Setup Not Found</h1>
-          <p className="text-zinc-500 mb-8">This setup does not exist or has been removed.</p>
-          <Link href="/#archive" className="text-zinc-400 hover:text-white transition-colors">
-            &larr; Back to archive
-          </Link>
-        </div>
-      </div>
-    )
-  }
-
-  const title = isSkateboard
-    ? setup.frontmatter.deck || `${setup.frontmatter.brand || ''} ${setup.frontmatter.model || ''}`.trim()
-    : `${setup.frontmatter.brand || ''} ${setup.frontmatter.model || ''}`.trim()
-
-  // Shoe layout (unchanged)
-  if (!isSkateboard) {
-    return (
-      <main className="min-h-screen bg-zinc-950 px-4 sm:px-6 lg:px-8 py-20">
-        <div className="max-w-7xl mx-auto">
-          <Link
-            href="/#archive"
-            className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-8"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            Back to archive
-          </Link>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Image Gallery */}
-            <div className="space-y-4">
-              {setup.images.length > 0 && (
-                <div className="grid grid-cols-1 gap-4">
-                  {setup.images.map((img, idx) => (
-                    <div key={idx} className="relative aspect-video bg-zinc-900 rounded-lg overflow-hidden">
-                      <img src={img} alt={`${title} - Image ${idx + 1}`} className="w-full h-full object-contain" />
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Setup Info */}
-            <div className="space-y-8">
-              <div>
-                <p className="text-zinc-500 uppercase tracking-wider text-sm mb-2">{setup.category}</p>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">{title}</h1>
-              </div>
-
-              {setup.frontmatter.rating != null && setup.frontmatter.rating > 0 && (
-                <Stars rating={setup.frontmatter.rating} />
-              )}
-
-              {setup.components?.[0] && (
-                <div className="space-y-4">
-                  <h2 className="text-xl font-semibold">Specifications</h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {Object.entries(setup.components[0].specs).map(([key, value]) => (
-                      <div key={key} className="border-l-2 border-zinc-800 pl-4 py-1">
-                        <p className="text-zinc-500 text-sm capitalize">{key.replace(/_/g, ' ')}</p>
-                        <p className="text-zinc-200 font-medium">
-                          <SpecValue value={String(value)} />
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {setup.content && (
-                <div className="space-y-4">
-                  <h2 className="text-xl font-semibold">Review</h2>
-                  <div
-                    className="prose prose-invert prose-zinc max-w-none"
-                    dangerouslySetInnerHTML={{ __html: setup.content }}
-                  />
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </main>
-    )
-  }
-
-  // Skateboard layout with scroll-snap sections
-  return (
+  // Render sections
+  const sections = (
     <>
-      {/* Sticky Back Button */}
-      <Link
-        href="/#archive"
-        className="fixed top-6 left-6 z-50 inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
-      >
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        Back to archive
-      </Link>
-
-      {totalSections > 0 && (
-        <div className="scroll-indicator">
-          {Array.from({ length: totalSections }, (_, i) => (
-            <div
-              key={i}
-              className={`scroll-dot ${activeSectionIndex === i ? 'active' : ''}`}
-              onClick={() =>
-                document.getElementById(`section-${i}`)?.scrollIntoView({ behavior: 'smooth' })
-              }
-            />
-          ))}
-        </div>
-      )}
-
-      <div className="scroll-container" ref={scrollRef}>
         {/* Component Sections */}
         {components.map((component, index) => {
           const specs = Object.entries(component.specs)
-          const sectionIndex = index
+          const sectionIndex = startIndex + index
 
           return (
             <section
               key={component.name}
-              className={`component-section ${activeSectionIndex === sectionIndex ? 'active' : ''}`}
+              className={`component-section ${getIsActive(index) ? 'active' : ''}`}
               data-index={sectionIndex}
               id={`section-${sectionIndex}`}
             >
@@ -258,10 +142,10 @@ export default function SetupDetailPage() {
                         {/* Component counter */}
                         <div className="flex items-center gap-4 text-zinc-600">
                           <span className="text-4xl font-bold text-zinc-700">
-                            {String(sectionIndex + 1).padStart(2, '0')}
+                            {String(index + 1).padStart(2, '0')}
                           </span>
                           <div className="w-16 h-px bg-zinc-700" />
-                          <span className="text-sm">{String(totalSections).padStart(2, '0')}</span>
+                          <span className="text-sm">{String(components.length).padStart(2, '0')}</span>
                         </div>
                       </div>
                     </div>
@@ -273,11 +157,11 @@ export default function SetupDetailPage() {
         })}
 
         {/* Review Section or Rating Section */}
-        {(setup.content || (setup.frontmatter.rating != null && setup.frontmatter.rating > 0)) && (
+        {hasReviewOrRating && (
           <section
-            className={`component-section ${activeSectionIndex === components.length ? 'active' : ''}`}
-            data-index={components.length}
-            id={`section-${components.length}`}
+            className={`component-section ${getIsActive(components.length) ? 'active' : ''}`}
+            data-index={startIndex + components.length}
+            id={`section-${startIndex + components.length}`}
           >
             <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
               <div className="max-w-7xl mx-auto">
@@ -303,7 +187,44 @@ export default function SetupDetailPage() {
             </div>
           </section>
         )}
-      </div>
+      </>
+    )
+
+  return (
+    <>
+      {showBackButton && (
+        <Link
+          href="/#archive"
+          className="fixed top-6 left-6 z-50 inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to archive
+        </Link>
+      )}
+
+      {totalSections === undefined && localTotalSections > 0 && (
+        <div className="scroll-indicator">
+          {Array.from({ length: localTotalSections }, (_, i) => (
+            <div
+              key={i}
+              className={`scroll-dot ${getIsActive(i) ? 'active' : ''}`}
+              onClick={() =>
+                document.getElementById(`section-${startIndex + i}`)?.scrollIntoView({ behavior: 'smooth' })
+              }
+            />
+          ))}
+        </div>
+      )}
+
+      {totalSections === undefined ? (
+        <div className="scroll-container" ref={scrollRef}>
+          {sections}
+        </div>
+      ) : (
+        sections
+      )}
     </>
   )
 }

@@ -1,34 +1,28 @@
 {
   "name": "skate-setups",
-  "module": "backend/index.ts",
-  "type": "module",
+  "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "bun run --hot backend/index.ts & cd frontend && bun run next dev -p 3000",
-    "dev:backend": "bun run --hot backend/index.ts",
-    "dev:frontend": "cd frontend && bun run next dev -p 3000",
-    "build": "bun build backend/index.ts --outdir dist --target bun",
-    "build:frontend": "cd frontend && bun run next build",
-    "start": "bun run dist/index.ts"
-  },
-  "devDependencies": {
-    "@types/bun": "latest",
-    "@types/node": "latest",
-    "@types/react": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.9.3"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.16",
     "autoprefixer": "^10.4.24",
-    "elysia": "^1.4.22",
     "next": "^16.1.6",
     "postcss": "^8.5.6",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "swr": "^2.4.0",
-    "tailwindcss": "3",
+    "tailwindcss": "^3.4.0",
     "zustand": "^5.0.11"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "typescript": "^5.9.3"
   }
 }

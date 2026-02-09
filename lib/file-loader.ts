@@ -2,7 +2,7 @@ import { readdirSync, statSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseMarkdownFile, type ParsedSetup, type SetupMetadata } from './markdown-parser'
 
-const SETUP_DIR = join(process.cwd(), 'Setup')
+const SETUP_DIR = join(process.cwd(), 'data')
 
 export function findMarkdownFiles(dir: string): string[] {
   const files: string[] = []

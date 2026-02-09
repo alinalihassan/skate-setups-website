@@ -6,8 +6,8 @@ import { fetcher } from '../lib/api'
 import { useScrollStore } from '../lib/store'
 import { useScrollSpy } from '../lib/hooks'
 import type { CurrentSetupsResponse } from '../lib/types'
-import ComponentSection from '../components/ComponentSection'
-import ShoeSection from '../components/ShoeSection'
+import SkateboardSetup from '../components/SkateboardSetup'
+import ShoeSetup from '../components/ShoeSetup'
 import ArchiveSection from '../components/ArchiveSection'
 
 export default function HomePage() {
@@ -22,7 +22,12 @@ export default function HomePage() {
   const skateboard = current?.skateboard ?? null
   const shoe = current?.shoe ?? null
   const components = skateboard?.components ?? []
-  const totalSections = components.length + (shoe ? 1 : 0)
+  const skateboardComponentCount = components.length
+  const hasSkateboardReview = skateboard?.content || (skateboard?.frontmatter.rating != null && skateboard?.frontmatter.rating > 0)
+  const skateboardSections = skateboardComponentCount + (hasSkateboardReview ? 1 : 0)
+  const totalSections = skateboardSections + (shoe ? 1 : 0)
+  // Total component sections (excluding review) for counter display
+  const totalComponentSections = skateboardComponentCount + (shoe ? 1 : 0)
 
   useScrollSpy(scrollRef, isLoading ? 0 : totalSections)
 
@@ -56,22 +61,24 @@ export default function HomePage() {
       )}
 
       <div className="scroll-container" ref={scrollRef}>
-        {components.map((component, i) => (
-          <ComponentSection
-            key={component.name}
-            component={component}
-            index={i}
-            total={totalSections}
-            isActive={activeSectionIndex === i}
+        {skateboard && (
+          <SkateboardSetup
+            setup={skateboard}
+            showBackButton={false}
+            startIndex={0}
+            totalSections={totalSections}
+            isActive={(index) => activeSectionIndex === index}
           />
-        ))}
+        )}
 
         {shoe && (
-          <ShoeSection
+          <ShoeSetup
             shoe={shoe}
-            index={components.length}
-            total={totalSections}
-            isActive={activeSectionIndex === components.length}
+            showBackButton={false}
+            index={skateboardSections}
+            displayIndex={skateboardComponentCount}
+            total={totalComponentSections}
+            isActive={activeSectionIndex === skateboardSections}
           />
         )}
 

@@ -51,7 +51,7 @@ const filters = [
 export default function ArchiveSection() {
   const [filter, setFilter] = useState('all')
   const url = filter === 'all' ? '/api/setups' : `/api/setups?type=${filter}`
-  const { data } = useSWR<SetupsResponse>(url, fetcher)
+  const { data, isLoading } = useSWR<SetupsResponse>(url, fetcher)
 
   const setups = data?.setups?.filter((s) => !s.frontmatter.active) ?? []
 
@@ -82,13 +82,13 @@ export default function ArchiveSection() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="archive-grid">
             {setups.map((setup) => (
               <ArchiveCard key={setup.id} setup={setup} />
             ))}
           </div>
 
-          {setups.length === 0 && (
+          {setups.length === 0 && !isLoading && (
             <div className="text-center py-20">
               <p className="text-zinc-600 text-lg">No setups found</p>
             </div>

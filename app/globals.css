@@ -147,6 +147,35 @@ body {
   scroll-snap-align: start;
 }
 
+/* Archive Grid with smooth transitions */
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .archive-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .archive-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .archive-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.archive-grid > * {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
 /* ================================
    Card Hover Effects
    ================================ */
