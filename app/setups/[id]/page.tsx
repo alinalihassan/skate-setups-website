@@ -19,7 +19,7 @@ export default function SetupDetailPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="loading-spinner mx-auto mb-4" />
-          <p className="text-zinc-500">Loading setup...</p>
+          <p className="text-zinc-500">Loading setup…</p>
         </div>
       </div>
     )
@@ -54,7 +54,7 @@ export default function SetupDetailPage() {
           href="/#archive"
           className="inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors mb-8"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
           Back to archive
@@ -66,8 +66,8 @@ export default function SetupDetailPage() {
             {setup.images.length > 0 && (
               <div className="grid grid-cols-1 gap-4">
                 {setup.images.map((img, idx) => (
-                  <div key={idx} className="relative aspect-video bg-zinc-900 rounded-lg overflow-hidden">
-                    <img src={img} alt={`${title} - Image ${idx + 1}`} className="w-full h-full object-contain" />
+                  <div key={`img-${idx}`} className="relative aspect-video bg-zinc-900 rounded-lg overflow-hidden">
+                    <img src={img} alt={`${title} - View ${idx + 1}`} width={800} height={450} className="w-full h-full object-contain" />
                   </div>
                 ))}
               </div>

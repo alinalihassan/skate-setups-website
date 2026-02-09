@@ -31,7 +31,7 @@ export default function ShoeSetup({
           href="/#archive"
           className="fixed top-6 left-6 z-50 inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
           Back to archive
@@ -85,7 +85,9 @@ export default function ShoeSetup({
                           />
                           <img
                             src={img}
-                            alt={`Shoe view ${idx + 1}`}
+                            alt={`View ${idx + 1}`}
+                            width={600}
+                            height={600}
                             className="relative w-full h-full object-contain rounded-xl bg-zinc-900 shadow-xl"
                           />
                         </div>

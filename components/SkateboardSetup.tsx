@@ -83,13 +83,15 @@ export default function SkateboardSetup({
                           <img
                             src={component.image}
                             alt={component.title}
+                            width={512}
+                            height={512}
                             className="relative w-full h-full object-contain rounded-2xl bg-zinc-900 shadow-2xl"
                           />
                         </div>
                       ) : (
                         <div className="aspect-square max-w-lg mx-auto lg:mx-0 bg-zinc-900 rounded-2xl flex items-center justify-center border-2 border-dashed border-zinc-800">
                           <div className="text-center p-8">
-                            <svg className="w-20 h-20 mx-auto mb-4 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-20 h-20 mx-auto mb-4 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
                             <p className="text-zinc-600 text-lg">No image available</p>
@@ -197,7 +199,7 @@ export default function SkateboardSetup({
           href="/#archive"
           className="fixed top-6 left-6 z-50 inline-flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
           Back to archive
@@ -207,8 +209,11 @@ export default function SkateboardSetup({
       {totalSections === undefined && localTotalSections > 0 && (
         <div className="scroll-indicator">
           {Array.from({ length: localTotalSections }, (_, i) => (
-            <div
-              key={i}
+            <button
+              key={`dot-${i}`}
+              type="button"
+              aria-label={`Go to section ${i + 1}`}
+              aria-current={getIsActive(i) ? 'true' : undefined}
               className={`scroll-dot ${getIsActive(i) ? 'active' : ''}`}
               onClick={() =>
                 document.getElementById(`section-${startIndex + i}`)?.scrollIntoView({ behavior: 'smooth' })

@@ -36,7 +36,7 @@ export default function HomePage() {
       <div className="h-screen flex items-center justify-center bg-zinc-950">
         <div className="text-center">
           <div className="loading-spinner mx-auto mb-4" />
-          <p className="text-zinc-500">Loading setups...</p>
+          <p className="text-zinc-500">Loading setups…</p>
         </div>
       </div>
     )
@@ -49,8 +49,11 @@ export default function HomePage() {
       {totalSections > 0 && (
         <div className="scroll-indicator">
           {Array.from({ length: totalSections }, (_, i) => (
-            <div
-              key={i}
+            <button
+              key={`section-${i}`}
+              type="button"
+              aria-label={`Go to section ${i + 1}`}
+              aria-current={activeSectionIndex === i ? 'true' : undefined}
               className={`scroll-dot ${activeSectionIndex === i ? 'active' : ''}`}
               onClick={() =>
                 document.getElementById(`section-${i}`)?.scrollIntoView({ behavior: 'smooth' })
