@@ -1,4 +1,4 @@
-import { useEffect, type RefObject } from 'react'
+import { useEffect, useRef, type RefObject } from 'react'
 import { useScrollStore } from './store'
 
 /**
@@ -11,12 +11,19 @@ export function useScrollSpy(
 ) {
   const setActiveSectionIndex = useScrollStore((s) => s.setActiveSectionIndex)
   const setProgress = useScrollStore((s) => s.setProgress)
+  const canUpdateUrlRef = useRef(false)
 
   useEffect(() => {
     const container = containerRef.current
     if (!container || sectionCount === 0) return
 
     const cleanups: (() => void)[] = []
+
+    // Delay URL updates until after scroll restoration is complete
+    const urlUpdateTimer = setTimeout(() => {
+      canUpdateUrlRef.current = true
+    }, 100)
+    cleanups.push(() => clearTimeout(urlUpdateTimer))
 
     // --- Section observer (component sections) ---
     const sections = container.querySelectorAll('.component-section')
@@ -27,8 +34,11 @@ export function useScrollSpy(
             if (entry.isIntersecting) {
               const idx = parseInt(entry.target.getAttribute('data-index') || '0', 10)
               setActiveSectionIndex(idx)
-              const id = entry.target.getAttribute('id')
-              if (id) window.history.replaceState(null, '', `#${id}`)
+              // Only update URL after initial restoration period
+              if (canUpdateUrlRef.current) {
+                const id = entry.target.getAttribute('id')
+                if (id) window.history.replaceState(null, '', `#${id}`)
+              }
             }
           }
         },
@@ -44,7 +54,7 @@ export function useScrollSpy(
       const archiveObserver = new IntersectionObserver(
         (entries) => {
           for (const entry of entries) {
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting && canUpdateUrlRef.current) {
               window.history.replaceState(null, '', '#archive')
             }
           }
@@ -67,9 +77,13 @@ export function useScrollSpy(
     // --- Restore position from hash ---
     const hash = window.location.hash
     if (hash) {
-      setTimeout(() => {
-        document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: 'instant' })
-      }, 100)
+      // Small delay to ensure DOM is ready but before user sees it
+      requestAnimationFrame(() => {
+        const element = document.getElementById(hash.slice(1))
+        if (element) {
+          element.scrollIntoView({ behavior: 'instant' })
+        }
+      })
     }
 
     return () => cleanups.forEach((fn) => fn())

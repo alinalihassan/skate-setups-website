@@ -12,8 +12,26 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className="antialiased bg-zinc-950 text-zinc-100">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var hash = window.location.hash;
+                if (hash) {
+                  document.documentElement.style.scrollBehavior = 'auto';
+                  var el = document.getElementById(hash.slice(1));
+                  if (el) {
+                    el.scrollIntoView();
+                  }
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body className="antialiased bg-zinc-950 text-zinc-100" suppressHydrationWarning>
         {children}
       </body>
     </html>
