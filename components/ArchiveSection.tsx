@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useCallback } from 'react'
 import Link from 'next/link'
+import { useQueryState } from 'nuqs'
 import useSWR from 'swr'
 import { fetcher } from '../lib/api'
 import type { Setup, SetupsResponse } from '../lib/types'
@@ -12,7 +13,12 @@ function ArchiveCard({ setup }: { setup: Setup }) {
   const title = isSkateboard
     ? setup.frontmatter.deck || 'Unknown Deck'
     : `${setup.frontmatter.brand || ''} ${setup.frontmatter.model || ''}`.trim()
-  const firstImage = setup.images[0]
+  
+  // For skateboards, use the deck component image; otherwise use first setup image
+  const deckImage = isSkateboard 
+    ? setup.components?.find(c => c.name === 'deck')?.image 
+    : undefined
+  const firstImage = deckImage || setup.images[0]
 
   return (
     <Link href={`/setups/${setup.id}`}>
@@ -49,11 +55,25 @@ const filters = [
 ] as const
 
 export default function ArchiveSection() {
-  const [filter, setFilter] = useState('all')
+  const [filter, setFilter] = useQueryState('filter', {
+    defaultValue: 'all',
+    parse: (value) => {
+      if (value === 'skateboard' || value === 'shoe') return value
+      return 'all'
+    },
+  })
+
   const url = filter === 'all' ? '/api/setups' : `/api/setups?type=${filter}`
-  const { data, isLoading } = useSWR<SetupsResponse>(url, fetcher)
+  const { data, isLoading, error } = useSWR<SetupsResponse>(url, fetcher)
 
   const setups = data?.setups?.filter((s) => !s.frontmatter.active) ?? []
+
+  const handleFilterClick = useCallback(
+    (id: string) => {
+      setFilter(id === 'all' ? null : id)
+    },
+    [setFilter]
+  )
 
   return (
     <section className="archive-section" id="archive">
@@ -69,7 +89,8 @@ export default function ArchiveSection() {
                 <button
                   key={id}
                   type="button"
-                  onClick={() => setFilter(id)}
+                  aria-pressed={filter === id}
+                  onClick={() => handleFilterClick(id)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                     filter === id
                       ? 'bg-zinc-100 text-zinc-900'
@@ -82,16 +103,36 @@ export default function ArchiveSection() {
             </div>
           </div>
 
-          <div className="archive-grid">
-            {setups.map((setup) => (
-              <ArchiveCard key={setup.id} setup={setup} />
-            ))}
-          </div>
-
-          {setups.length === 0 && !isLoading && (
+          {error ? (
             <div className="text-center py-20">
-              <p className="text-zinc-600 text-lg">No setups found</p>
+              <p className="text-zinc-600 text-lg mb-4">Failed to load setups</p>
+              <button
+                type="button"
+                onClick={() => window.location.reload()}
+                className="text-zinc-400 hover:text-white transition-colors"
+              >
+                Try again
+              </button>
             </div>
+          ) : isLoading ? (
+            <div className="text-center py-20">
+              <div className="loading-spinner mx-auto mb-4" />
+              <p className="text-zinc-500">Loading setups…</p>
+            </div>
+          ) : (
+            <>
+              <div className="archive-grid">
+                {setups.map((setup) => (
+                  <ArchiveCard key={setup.id} setup={setup} />
+                ))}
+              </div>
+
+              {setups.length === 0 ? (
+                <div className="text-center py-20">
+                  <p className="text-zinc-600 text-lg">No setups found</p>
+                </div>
+              ) : null}
+            </>
           )}
         </div>
       </div>
