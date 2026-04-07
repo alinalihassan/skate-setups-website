@@ -25,7 +25,7 @@ export interface ParsedSetup {
 }
 
 export function parseYamlFrontmatter(content: string): { frontmatter: Record<string, any>; body: string } {
-  const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
+  const frontmatterMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n([\s\S]*))?$/)
   
   if (!frontmatterMatch) {
     return { frontmatter: {}, body: content }
@@ -142,8 +142,8 @@ export function extractComponents(frontmatter: Record<string, any>, category: 's
 export function parseMarkdownFile(fileContent: string, filePath: string): ParsedSetup {
   const { frontmatter, body } = parseYamlFrontmatter(fileContent)
   const images = extractImages(frontmatter)
-  
-  const category = filePath.includes('Skateboard') ? 'skateboard' : 'shoe'
+
+  const category = frontmatter.type === 'shoe' ? 'shoe' : 'skateboard'
   const components = extractComponents(frontmatter, category)
   
   return {
